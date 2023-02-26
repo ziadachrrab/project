@@ -43,12 +43,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.addFilter(corsFilter())
                 .authenticationProvider(authenticationProvider())
-                .authorizeHttpRequests(manager -> {
-                    manager.requestMatchers("/")
-                            .permitAll()
-                            .anyRequest()
-                            .authenticated();
-                }).formLogin();
+                .authorizeHttpRequests(manager -> manager.anyRequest().permitAll());
         return httpSecurity.build();
     }
 
